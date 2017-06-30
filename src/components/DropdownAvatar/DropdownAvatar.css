@@ -1,0 +1,32 @@
+@import '../../variables.css';
+
+.dropdownAvatar__title {
+	display: flex;
+	align-items: center;
+	margin-bottom: var(--pad-mar);
+	padding-bottom: var(--pad-mar);
+	border-bottom: 1px solid #ddd;
+}
+
+.dropdownAvatar__title h4 {
+	margin: 0;
+	flex: 1;
+}
+
+.dropdownAvatar__close {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.dropdownAvatar__navlink {
+	flex: 1;
+  display: flex;
+  margin-bottom: var(--pad-mar);
+  align-items: center;
+  position: relative;
+}
+
+.dropdownAvatar__navlink i {
+	margin-right: var(--pad-mar);
+}

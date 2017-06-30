@@ -1,0 +1,43 @@
+@import '../../variables.css';
+
+.DateInput__display-text--focused {
+	background: var(--color-main);
+	border-color: var(--color-sub-main);
+	border-radius: 3px;
+	color: white;
+}
+
+.DayPickerKeyboardShortcuts__show--bottom-right {
+	border-right-color: var(--color-main);
+}
+
+.CalendarDay--selected-span {
+	background: var(--color-main);
+	border-color: var(--color-sub-main);
+}
+
+.CalendarDay--selected-end, 
+.CalendarDay--selected, 
+.CalendarDay--selected-span.CalendarDay--hovered, 
+.CalendarDay--selected-span:active,
+.CalendarDay--hovered-span,
+.CalendarDay--hovered-span:active,
+.CalendarDay--after-hovered-start,
+.CalendarDay--after-hovered-start:active {
+	background: var(--color-sub-main);
+	border: 1px double #5249c1;
+	color: white;
+}
+
+.CalendarDay--selected-start, 
+.CalendarDay--selected-end {
+	background: #5249c1;
+	border: 1px double #5249c1;
+	color: white;
+}
+
+.CalendarDay--selected-start:active, 
+.CalendarDay--selected-end:active, 
+.CalendarDay--selected:active {
+	background: var(--color-sub-main);
+}

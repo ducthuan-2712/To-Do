@@ -1,0 +1,97 @@
+@import '../../variables.css';
+
+.menu {
+	display: flex;
+	flex-direction: column;
+	width: 60px;
+	height: 100%;
+}
+
+.menu--active {
+	width: 280px;
+}
+
+.menu__top {
+	background-color: var(--color-main);
+	height: 60px;
+	display: flex;
+}
+
+.menu__bottom {
+	flex: 1;
+	overflow-y: auto;
+}
+
+.menu__left {
+	display: flex;
+	flex: 1;
+	align-items: center;
+}
+
+.menu__right {
+	width: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--color-sub-main);
+}
+
+.menu__navlink {
+	flex: 1;
+  display: flex;
+  margin-bottom: var(--pad-mar);
+  padding-left: var(--pad-mar);
+  align-items: center;
+  position: relative;
+}
+
+.menu__navlink--selected:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0px;
+	width: 4px;
+	height: 100%;
+	background-color: var(--color-white);
+}
+
+.menu__navlink i {
+	margin-right: var(--pad-mar);
+}
+
+.menu__avatar {
+	flex: 1;
+	padding-left: var(--pad-mar);
+}
+
+.menu__logout {
+	padding: 0 var(--pad-mar);
+}
+
+/* 
+ * Change
+ */
+
+.menu .menu__left, 
+.menu .accordion__top,
+.menu .menu__navlink span {
+	display: none;
+}
+
+.menu--active .menu__left, 
+.menu--active .accordion__top,
+.menu--active .menu__navlink span {
+	display: flex;
+}
+
+.menu .accordion__bottom {
+	max-height: inherit;
+}
+
+.menu--active .accordion__bottom {
+	max-height: 0;
+}
+
+.menu--active .accordion__bottom--active {
+	max-height: 1000px;
+}

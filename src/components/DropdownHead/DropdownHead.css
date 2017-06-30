@@ -1,0 +1,20 @@
+@import '../../variables.css';
+
+.dropdownHead {
+	display: flex;
+	align-items: center;
+	margin-bottom: var(--pad-mar);
+	padding-bottom: var(--pad-mar);
+	border-bottom: 1px solid #ddd;
+}
+
+.dropdownHead h4 {
+	margin: 0;
+	flex: 1;
+}
+
+.dropdownHead__close {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

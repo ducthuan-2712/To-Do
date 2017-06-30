@@ -1,0 +1,170 @@
+@import '../variables.css';
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-letter);
+  background-color: var(--color-silver);
+  padding: 0;
+  margin: 0;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+a {
+  color: var(--color-green);
+  text-decoration: none;
+}
+
+.page {
+	display: flex;
+	height: inherit;
+	position: relative;
+}
+
+.page__left {
+	background-color: var(--color-sub-main);
+	height: var(--length-full);
+}
+
+.page__right {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+}
+
+.page__top {
+	background-color: var(--color-white);
+	box-shadow: 0 -10px 26px #909090;
+}
+
+.page__box {
+	flex: 1;
+	overflow-y: auto;
+}
+
+
+/*
+ * Features: Animation moving pages
+ * Description: When change page (fetch data) - if done => change pages
+ * Athor: Mr.Thuan
+ * Update: 06/24/2017
+ */
+
+.overlay {
+  position: fixed;
+  left: 280px;
+  right: 0;
+  top: 60px;
+  bottom: 0;
+  z-index: -100;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  background-color: var(--color-silver);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: all 0.4s ease-in-out 0s;
+}
+
+.overlay:before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  width: 100%;
+  left: 0;
+  height: 60px;
+  box-shadow: 0 -10px 26px #909090;
+  z-index: 2;
+  background-color: white;
+}
+
+.overlay .overlay__circle {
+	width: 120px;
+	position: relative;
+}
+
+.overlay .overlay__circle:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	box-shadow: 0 0 var(--pad-mar-xxs) var(--color-sub-main);
+}
+
+.overlay .overlay__circle img {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.overlay .overlay__circle b {
+	font-size: var(--font-size);
+	display: block;
+	text-align: center;
+	white-space: nowrap;
+	letter-spacing: -0.2px;
+}
+
+/* New page */
+.page-enter {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.page-enter.page-enter-active {
+
+}
+
+.page-enter.page-enter-active + .overlay,
+.overlay.overlay--active {
+	opacity: 1 !important;
+	visibility: visible !important;
+	z-index: 1 !important;
+}
+
+.page-enter + .overlay .overlay__circle {
+
+}
+
+.page-enter.page-enter-active + .overlay .overlay__circle {
+
+}
+
+/* Current page */
+.page-leave {
+
+}
+
+.page-leave.page-leave-active {
+
+}
+
+.page-leave.page-leave-active + .overlay {
+	opacity: 1 !important;
+	visibility: visible !important;
+	z-index: 1 !important;
+}
+
+.page-leave + .overlay .overlay__circle {
+	
+}
+
+.page-leave.page-leave-active + .overlay .overlay__circle {
+	/*transform: translateY(-50%) translateX(-50%) scale(1) !important;*/
+	/*z-index: 1;*/
+	/*-webkit-transition: all 0.4s ease-in-out 0s;*/
+	/*-moz-transition: all 0.4s ease-in-out 0s;*/
+	/*-ms-transition: all 0.4s ease-in-out 0s;*/
+	/*-o-transition: all 0.4s ease-in-out 0s;*/
+	/*transition: all 0.4s ease-in-out 0s;*/
+}

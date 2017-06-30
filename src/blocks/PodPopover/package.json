@@ -1,0 +1,6 @@
+{
+  "name": "PodPopover",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./PodPopover.js"
+}

@@ -1,0 +1,38 @@
+@import '../../variables.css';
+
+.accordion {
+	padding: var(--pad-mar);
+}
+
+.accordion--white * {
+	color: white;
+}
+
+.accordion__top {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: var(--pad-mar);
+}
+
+.accordion__left {
+	flex: 1;
+	align-items: center;
+	font-size: var(--font-size);
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.accordion__right {
+	align-items: center;
+}
+
+.accordion__bottom {
+	max-height: 0;
+	overflow: hidden;
+	transition: 1000ms ease-in-out 0s;
+}
+
+.accordion__bottom--active {
+	max-height: 1000px;
+}
