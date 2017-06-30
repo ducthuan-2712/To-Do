@@ -1,0 +1,79 @@
+@import '../../variables.css';
+
+.popover {
+	position: absolute;
+	padding: var(--pad-mar);
+	background-color: var(--color-white);
+	visibility: hidden;
+	opacity: 0;
+	z-index: -1;
+	right: 0;
+}
+
+.popover__loading {
+  margin: 10px auto;
+  display: block;
+  max-width: 80px;
+}
+
+.popover.popover--xs {
+	width: 200px;
+}
+
+.popover.popover--md {
+	width: 260px;
+}
+
+.popover.popover--lg {
+	width: 300px;
+}
+
+.popover.popover--calendar {
+	width: 360px;
+}
+
+.popover--shown {
+	visibility: inherit;
+	opacity: 1;
+	z-index: 2;
+}
+
+.popover:before {
+	content: '';
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+}
+
+.popover.top {
+	top: 100%;
+	margin-top: var(--pad-mar-xxs);
+}
+
+.popover.bottom {
+	bottom: 100%;
+	margin-bottom: var(--pad-mar-xxs);
+}
+
+.popover.left {
+	left: 0;
+}
+
+.popover.right {
+	right: 0;
+}
+
+.popover.top:before {
+	border-bottom: 6px solid white;
+	top: -6px;
+}
+
+.popover.left:before {
+	left: 6px;
+}
+
+.popover.right:before {
+	right: 10px;
+}

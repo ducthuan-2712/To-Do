@@ -1,0 +1,27 @@
+@import '../../variables.css';
+
+.dropdownTeam__box {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+	max-height: 250px;
+	overflow-y: auto;
+}
+
+.dropdownTeam__list {
+	width: 33.3333%;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+}
+
+.dropdownTeam__list .avatar {
+	margin: 0 auto var(--pad-mar);
+}
+
+.dropdownTeam__name {
+	display: block;
+	padding: 0 var(--pad-mar);
+	margin-bottom: var(--pad-mar);
+}

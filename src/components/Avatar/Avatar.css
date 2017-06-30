@@ -1,0 +1,10 @@
+@import '../../variables.css';
+
+.avatar {
+	margin: 0 5px 0 0;
+}
+
+.avatar--circle {
+	border-radius: 50%;
+	overflow: hidden;
+}

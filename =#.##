@@ -1,0 +1,17 @@
+react-todos@0.1.0 d:\xampp\htdocs\react-todos
++-- moment@2.18.1 
++-- react@15.6.1 
++-- react-addons-shallow-compare@15.6.0 
++-- react-dates@12.1.2 
+| +-- airbnb-prop-types@2.6.1 
+| | +-- array.prototype.find@2.0.4 
+| | `-- object.entries@1.0.4 
+| +-- classnames@2.2.5 
+| +-- consolidated-events@1.1.0 
+| +-- lodash.throttle@4.1.1 
+| +-- object.assign@4.0.4 
+| +-- object.values@1.0.4 
+| +-- react-moment-proptypes@1.4.0 
+| `-- react-portal@3.1.0 
+`-- react-dom@15.6.1 
+

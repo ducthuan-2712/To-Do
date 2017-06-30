@@ -1,0 +1,24 @@
+@import '../../variables.css';
+
+.icon {
+  font-size: var(--font-size-xxs);
+  cursor: pointer;
+}
+
+/* SIZES */
+.icon--xs {
+  font-size: var(--font-size-xs);
+}
+
+.icon--md {
+  font-size: var(--font-size-md);
+}
+
+.icon--lg {
+  font-size: var(--font-size-lg);
+}
+
+/* COLOR */
+.icon--white {
+	color: var(--color-white);
+}
