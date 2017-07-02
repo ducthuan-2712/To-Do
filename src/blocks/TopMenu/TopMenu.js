@@ -61,10 +61,35 @@ class TopMenu extends Component {
     let checkTeam = this.state.dropdownTeam ? ' top-menu--active': '';
     let checkCalendar = this.state.dropdownCalendar ? ' top-menu--active': '';
 
+    const {location} = this.props;
+    let row;
+    if(
+      location.pathname === '/' || 
+      location.pathname === '/t-task' ||
+      location.pathname === '/a-task' ||
+      location.pathname === '/d-task'
+    ) {
+      row = (
+        <div className={'top-menu__calendar'+checkCalendar}>
+          <Dropdown 
+            active={this.state.dropdownCalendar}
+            name="dropdownCalendar"
+            callback={this.handleCallback}
+          >
+            <Icon size="md" name="date_range" />
+            <PodPopover 
+              ref={(child) => { this._PopoverCalendar = child; }}
+              onClosePod={this.handleClosePod}
+            />
+          </Dropdown>
+        </div>
+      )
+    }
+
     return (
       <div className="top-menu">
       	<div className="top-menu__center">
-	      	<NavLink exact to="/" className="logo" activeClassName="logo--selected" >
+	      	<NavLink exact to="" className="logo" activeClassName="logo--selected" >
 	      		<img src={logo} className="top-menu__logo" alt="presentation" role="presentation" />
 	      	</NavLink>
       	</div>
@@ -82,19 +107,7 @@ class TopMenu extends Component {
               />
             </Dropdown>
 					</div>
-					<div className={'top-menu__calendar'+checkCalendar}>
-            <Dropdown 
-              active={this.state.dropdownCalendar}
-              name="dropdownCalendar"
-              callback={this.handleCallback}
-            >
-              <Icon size="md" name="date_range" />
-              <PodPopover 
-                ref={(child) => { this._PopoverCalendar = child; }}
-                onClosePod={this.handleClosePod}
-              />
-            </Dropdown>
-					</div>
+          {row}
       	</div>
       </div>
     );

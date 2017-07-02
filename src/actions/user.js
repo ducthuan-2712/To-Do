@@ -5,28 +5,22 @@
 const User = {
 	logInWithFacebook() {
 		const login = {
-			isLoggedIn: true,
 			id: null,
+			type: 'facebook',
 			name: null,
-			email: null
+			email: null,
+	        url_team: 235148050,
+	        admin_url_team: true
 		}
 
 		return {
 			type: 'USER_LOGIN',
-			login,
+			login
 		};
 	},
 	logOutWithFacebook() {
-		const logout = {
-			isLoggedIn: false,
-			id: null,
-			name: null,
-			email: null
-		}
-
 		return {
-			type: 'USER_LOGOUT',
-			logout,
+			type: 'USER_LOGOUT'
 		};
 	}
 }

@@ -40,11 +40,11 @@ class Accordion extends Component {
 
     return (
       <div className={"accordion"+isColor}>
-      	<div className="accordion__top" onClick={this.handleClick}>
+      	<div className="accordion__top">
 	      	<div className="accordion__left">
 	      		{title}
 	      	</div>
-	      	<div className="accordion__right">
+	      	<div className="accordion__right" onClick={this.handleClick}>
 		      	{active
 	      			? <Icon name="keyboard_arrow_down" color="white" />
 	      			: <Icon name="keyboard_arrow_right" color="white" />

@@ -47,7 +47,7 @@ class DropdownNotification extends Component {
               <div key={"dropdownNotification__list"+i} className="dropdownNotification__list">
                 <div className="dropdownNotification__left">
                   <Avatar 
-                    userID={data.userID}
+                    userID={data.user._id}
                     size="32"
                     type="circle" 
                   />

@@ -127,9 +127,9 @@ class Menu extends Component {
                 />
               </Dropdown>
             </div>
-            <div className="menu__logout" onClick={this.logout}>
+            <a className="menu__logout" onClick={this.logout}>
               <Icon size="xs" name="exit_to_app" color="white" />
-            </div>
+            </a>
           </div>
           <div className="menu__right" onClick={this.handleMenu}>
             {isOpen
@@ -146,9 +146,9 @@ class Menu extends Component {
             title="Trang chủ"
             callback={this.handleCallbackAccordion}
           >
-            <NavLink to="/m-task" className="menu__navlink" activeClassName="menu__navlink--selected">
+            <NavLink exact to="/" className="menu__navlink" activeClassName="menu__navlink--selected">
               <Icon size="xs" name="playlist_add_check" color="white" />
-              <span>Công việc của tôi</span>
+              <span>Công việc của team</span>
             </NavLink>
             <NavLink to="/t-task" className="menu__navlink" activeClassName="menu__navlink--selected">
               <Icon size="xs" name="assignment" color="white" />

@@ -5,17 +5,27 @@
 const initialState = {
 	isLoggedIn: false,
 	id: null,
-	name: null,
-	email: null
+  type: null,
+  name: null,
+  email: null,
+  url_team: null,
+  admin_url_team: false
 };
 
 export default function user(state = initialState, action) {
   if (action.type === 'USER_LOGIN') {
-    return action.login;
+    let {id, name, type, email} = action.login;
+    return {
+      isLoggedIn: true,
+      id,
+      name,
+      email,
+      type
+    };
   }
 
   if (action.type === 'USER_LOGOUT') {
-    return action.logout;
+    return initialState
   }
 
   return state;
