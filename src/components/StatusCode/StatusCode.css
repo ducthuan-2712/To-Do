@@ -1,0 +1,32 @@
+@import '../../variables.css';
+
+.statusCode {
+	padding: 0 var(--pad-mar);
+	height: 20px;
+	line-height: 20px;
+	font-size: 11px;
+	text-align: center;
+	color: var(--color-white);
+	border-radius: 20px;
+	display: inline-block;
+}
+
+.statusCode--main {
+	background-color: var(--color-sub-main);
+}
+
+.statusCode--process {
+	background-color: #33dabd;
+}
+
+.statusCode--check {
+	background-color: #5489bd;
+}
+
+.statusCode--error {
+	background-color: #dc3131;
+}
+
+.statusCode--done {
+	background-color: var(--color-silver);
+}

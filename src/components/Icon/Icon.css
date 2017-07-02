@@ -22,3 +22,11 @@
 .icon--white {
 	color: var(--color-white);
 }
+
+.icon--active {
+	color: var(--color-main);
+}
+
+.icon--silver {
+	color: var(--color-silver);
+}

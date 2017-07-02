@@ -53,9 +53,11 @@ class App extends Component {
   }
 
   handleLogout() {
-    // Khởi tạo như app - 2 trạng thái đăng nhập true hoặc false.
-    // loadConfig - login facebook
-    this.props.dispatch(User.logOutWithFacebook());
+    if (window.confirm("Bạn có chắc chắn muốn đăng xuất?")) {
+      // Khởi tạo như app - 2 trạng thái đăng nhập true hoặc false.
+      // loadConfig - login facebook
+      this.props.dispatch(User.logOutWithFacebook());
+    }
   }
   
   render() {
@@ -71,7 +73,7 @@ class App extends Component {
         </div>
         <div className="page__right">
           <div className="page__top">
-            <TopMenu />
+            <TopMenu location={this.props.location} />
           </div>
           <div className="page__box">
             <CSSTransitionGroup
