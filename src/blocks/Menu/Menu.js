@@ -27,8 +27,8 @@ class Menu extends Component {
     this.state = {
       isOpen: true,
       accordionHome: true,
+      accordionMe: true,
       accordionSetting: false,
-      dropdownAvatar: false,
       dropdownNotification: false,
     }
 
@@ -55,40 +55,28 @@ class Menu extends Component {
       case 'accordionSetting':
         this.setState({ accordionSetting: !this.state.accordionSetting });
         break;
+      case 'accordionMe':
+        this.setState({ accordionMe: !this.state.accordionMe });
+        break;
       default:
     }
   }
 
   handleCallback(name, posX, posY, toggleClick) {
     if(!toggleClick) {
-      switch(name) {
-        case 'dropdownAvatar':
-          this._PopoverAvatar.show(name, posX, posY);
-          this.setState({ dropdownAvatar: true });
-          break;
-        case 'dropdownNotification':
-          this._PopoverNotification.show(name, posX, posY);
-          this.setState({ dropdownNotification: true });
-          break;
-        default:
-      }
+      this._PopoverNotification.show(name, posX, posY);
+      this.setState({ dropdownNotification: true });
     }
   }
 
   handleClosePod(name) {
-    switch(name) {
-      case 'dropdownAvatar':
-        this.setState({ dropdownAvatar: false });
-        break;
-      case 'dropdownNotification':
-        this.setState({ dropdownNotification: false });
-        break;
-      default:
-    }
+    this.setState({ dropdownNotification: false });
   }
 
   render() {
-    const { isOpen } = this.state;
+    const {isOpen} = this.state;
+    const {id, type, url_team, admin_url_team} = this.props;
+
     const activeMenu = isOpen ? ' menu--active' : '';
 
     return (
@@ -96,23 +84,16 @@ class Menu extends Component {
         <div className="menu__top">
           <div className="menu__left">
             <div className="menu__avatar">
-              <Dropdown 
-                active={this.state.dropdownAvatar}
-                name="dropdownAvatar"
-                callback={this.handleCallback}
-              >
-                <Avatar 
-                  border
-                  userID="100000298886063"
-                  size="40"
-                  type="circle" 
-                />
-                <Icon name="arrow_drop_down" color="white" />
-                <PodPopover 
-                  ref={(child) => { this._PopoverAvatar = child; }}
-                  onClosePod={this.handleClosePod}
-                />
-              </Dropdown>
+              <Avatar 
+                userID={id}
+                loginType={type}
+                border
+                size="40"
+                type="circle" 
+              />
+              <a className="menu__logout" onClick={this.logout}>
+                <Icon size="xs" name="exit_to_app" color="white" />
+              </a>
             </div>
             <div className="menu__notification">
               <Dropdown 
@@ -127,9 +108,6 @@ class Menu extends Component {
                 />
               </Dropdown>
             </div>
-            <a className="menu__logout" onClick={this.logout}>
-              <Icon size="xs" name="exit_to_app" color="white" />
-            </a>
           </div>
           <div className="menu__right" onClick={this.handleMenu}>
             {isOpen
@@ -143,22 +121,43 @@ class Menu extends Component {
             active={this.state.accordionHome}
             name="accordionHome"
             color="white"
-            title="Trang chủ"
+            title="Team"
             callback={this.handleCallbackAccordion}
           >
-            <NavLink exact to="/" className="menu__navlink" activeClassName="menu__navlink--selected">
+            <NavLink exact to={`/t/${url_team}`} className="menu__navlink" activeClassName="menu__navlink--selected">
               <Icon size="xs" name="playlist_add_check" color="white" />
-              <span>Công việc của team</span>
+              <span>Công việc</span>
             </NavLink>
-            <NavLink to="/t-task" className="menu__navlink" activeClassName="menu__navlink--selected">
+            {
+              admin_url_team
+                ? <NavLink to={`/t/${url_team}&-alert`} className="menu__navlink" activeClassName="menu__navlink--selected">
+                    <Icon size="xs" name="assignment_late" color="white" />
+                    <span>Trễ hạn</span>
+                  </NavLink>
+                : null
+            }
+            {
+              admin_url_team
+                ? <NavLink to={`/t/${url_team}&-done`} className="menu__navlink" activeClassName="menu__navlink--selected">
+                    <Icon size="xs" name="assignment_turned_in" color="white" />
+                    <span>Cần review</span>
+                  </NavLink>
+                : null
+            }
+          </Accordion>
+
+          <Accordion 
+            active={this.state.accordionMe}
+            name="accordionMe"
+            color="white"
+            title="Cá nhân"
+            callback={this.handleCallbackAccordion}
+          >
+            <NavLink to={`/m/${url_team}`} className="menu__navlink" activeClassName="menu__navlink--selected">
               <Icon size="xs" name="assignment" color="white" />
-              <span>Hôm nay có gì</span>
+              <span>Công việc của tôi</span>
             </NavLink>
-            <NavLink to="/a-task" className="menu__navlink" activeClassName="menu__navlink--selected">
-              <Icon size="xs" name="assignment_late" color="white" />
-              <span>Trễ hạn</span>
-            </NavLink>
-            <NavLink to="/d-task" className="menu__navlink" activeClassName="menu__navlink--selected">
+            <NavLink to={`/m/${url_team}&-done`} className="menu__navlink" activeClassName="menu__navlink--selected">
               <Icon size="xs" name="assignment_turned_in" color="white" />
               <span>Hoàn thành</span>
             </NavLink>

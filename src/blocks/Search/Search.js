@@ -41,7 +41,7 @@ class Search extends Component {
     const { valueTask, file, imageBase64 } = this.state
 
     if (this.props.callback) {
-      this.props.callback(valueTask, file, imageBase64)
+      this.props.callback(JSON.stringify(valueTask), file, imageBase64)
       this.setState({
         valueTask: '',
         file: {},
@@ -76,12 +76,12 @@ class Search extends Component {
 
     return (
       <div className="search">
-        {
-          Object.keys(file).length === 0 && file.constructor === Object
-            ? null
-            : <span className="search__preview">{file.name} - <b>{this.getMB(file.size)}</b></span>
-        }
         <div className="search__file">
+          {
+            Object.keys(file).length === 0 && file.constructor === Object
+              ? null
+              : <span className="search__preview">{file.name} - <b>{this.getMB(file.size)}</b></span>
+          }
           <input 
             type="file" 
             accept="image/*"
@@ -101,7 +101,7 @@ class Search extends Component {
         {
           valueTask
             ? <div className="search__button search__button--active" onClick={this.handleClick}><Icon size="xs" name="check" color="white" /></div>
-            : <div className="search__button"><Icon size="xs" name="check" /></div>
+            : <div className="search__button"><Icon size="xs" name="check" color="white" /></div>
         }
       </div>
     );

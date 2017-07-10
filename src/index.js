@@ -5,6 +5,7 @@
 import React  from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import createHistory from 'history/createBrowserHistory';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-redux';
@@ -24,7 +25,7 @@ const store = createStore(
     rootReducer,
     router: routerReducer
   }),
-  applyMiddleware(middleware)
+  applyMiddleware(middleware, thunk)
 );
 
 ReactDOM.render(

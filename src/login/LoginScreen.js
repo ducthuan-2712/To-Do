@@ -10,7 +10,8 @@ import logoIOS from '../img/logo-ios.svg';
 import BG from '../img/bg-login.jpg';
 
 // Actions
-import User from '../actions/user';
+import { logInWithFacebook } from '../actions/user';
+
 
 const propTypes = {
   dispatch: PropTypes.func.isRequired,
@@ -25,13 +26,17 @@ class LoginScreen extends Component {
     super(props)
     this.state = {}
 
-    this.handleSignin = this.handleSignin.bind(this);
+    this.handleSigninFacebook = this.handleSigninFacebook.bind(this);
+    this.handleSigninGoogle = this.handleSigninGoogle.bind(this);
   }
 
-
-  handleSignin() {
+  handleSigninFacebook() {
     // loadConfig - login facebook
-    this.props.dispatch(User.logInWithFacebook());
+    this.props.dispatch(logInWithFacebook());
+  }
+
+  handleSigninGoogle() {
+
   }
 
   render() {
@@ -48,7 +53,8 @@ class LoginScreen extends Component {
           <p>
             Công việc là niềm vui, To-Do là một cách đơn giản và nhanh nhất để hoàn thành công việc mỗi ngày.
           </p>
-          <div className="login-screen__login" onClick={this.handleSignin}>Đăng nhập bằng tài khoản Facebook</div>
+          <div className="login-screen__login" onClick={this.handleSigninFacebook}>Đăng nhập bằng tài khoản Facebook</div>
+          <div className="login-screen__login login-screen__login--custom" onClick={this.handleSigninGoogle}>Đăng nhập bằng tài khoản Google</div>
           <div className="login-screen__get">
             <span>Tải về</span>
             <a href="#ios" className="login-screen__iconLink">

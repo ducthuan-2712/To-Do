@@ -46,6 +46,7 @@ class DropdownTeam extends Component {
               <div key={"dropdownTeam__list"+i} className="dropdownTeam__list">
                 <Avatar 
                   userID={data.id_user}
+                  loginType={data.is_login}
                   size="56"
                   type="circle" 
                 />

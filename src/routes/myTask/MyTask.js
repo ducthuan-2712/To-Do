@@ -17,12 +17,12 @@ import StatusCode from '../../components/StatusCode';
 // Blocks
 import Search from '../../blocks/Search';
 
-import './Home.css';
+import './MyTask.css';
 
 // test data
 import graphQL from '../../local_database/graphQL';
 
-class Home extends Component {
+class MyTask extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -127,7 +127,7 @@ class Home extends Component {
       <div className="task">
         <Helmet>
           <meta charSet="utf-8" />
-          <title>Home | react-todos</title>
+          <title>MyTask | react-todos</title>
           <meta name="description" content="react-todos application" />
         </Helmet>
         
@@ -238,4 +238,4 @@ const mapState = state => {
   };
 }
 
-export default withRouter(connect(mapState)(Home))
+export default withRouter(connect(mapState)(MyTask))

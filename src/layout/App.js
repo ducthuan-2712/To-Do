@@ -3,9 +3,9 @@
  */
 
 import React, { Component } from 'react';
-import { Route } from 'react-router';
+import { Route, Redirect } from 'react-router';
 import { connect } from 'react-redux';
-// import { PropTypes } from 'prop-types';
+import { PropTypes } from 'prop-types';
 import { withRouter, Switch } from 'react-router-dom';
 import { CSSTransitionGroup } from 'react-transition-group' // ES6
 
@@ -18,6 +18,9 @@ import LoginScreen from '../login';
 
 // Routes
 import Home from '../routes/home';
+import MyTask from '../routes/myTask';
+import Setting from '../routes/setting';
+import Notifications from '../routes/notifications';
 import NoFound from '../routes/noFound';
 
 // CSS
@@ -26,19 +29,32 @@ import './App.css';
 import loadingPage from '../img/loading-page.gif';
 
 // Actions
-import User from '../actions/user';
+import { logOutWithFacebook } from '../actions/user';
 
 // Check flow
 const propTypes = {
-  // dispatch: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const routes = [
   {
-    path: '/',
+    path: '/t/:idteam?',
     component: Home,
     exact: true,
   },
+  {
+    path: '/m/:idteam?',
+    component: MyTask,
+  },
+  {
+    path: '/setting/:setting?',
+    component: Setting,
+  },
+  {
+    path: '/notifications',
+    component: Notifications,
+  },
+  
   {
     component: NoFound,
   },
@@ -52,28 +68,46 @@ class App extends Component {
     this.handleLogout = this.handleLogout.bind(this);
   }
 
+  componentWillMount() {
+    window.performance.mark('App')
+  }
+
+  componentDidMount() {
+    console.log('Load time: ',window.performance.now('App'))
+  }
+
   handleLogout() {
     if (window.confirm("Bạn có chắc chắn muốn đăng xuất?")) {
       // Khởi tạo như app - 2 trạng thái đăng nhập true hoặc false.
       // loadConfig - login facebook
-      this.props.dispatch(User.logOutWithFacebook());
+      this.props.dispatch(logOutWithFacebook());
     }
   }
   
   render() {
-    const { isLoggedIn } = this.props.user;
+    const { isLoggedIn, id, type, name, email, url_team, admin_url_team } = this.props.user;
     if (!isLoggedIn) {
       return <LoginScreen />
     }
 
     return (
       <div className="page">
+        {this.redirect()}
+
         <div className="page__left">
-          <Menu onLogout={this.handleLogout} />
+          <Menu 
+            url_team={url_team} 
+            id={id}
+            type={type}
+            name={name}
+            email={email}
+            onLogout={this.handleLogout} 
+            admin_url_team={admin_url_team}
+          />
         </div>
         <div className="page__right">
           <div className="page__top">
-            <TopMenu location={this.props.location} />
+            <TopMenu location={this.props.location} url_team={url_team} />
           </div>
           <div className="page__box">
             <CSSTransitionGroup
@@ -98,6 +132,15 @@ class App extends Component {
         </div>
       </div>
     );
+  }
+
+  redirect() {
+    let {url_team} = this.props.user;
+    let {pathname} = this.props.location;
+    
+    if(pathname === '/') {
+      return <Redirect to={`/t/${url_team}`} />
+    }
   }
 }
 

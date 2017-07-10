@@ -61,13 +61,14 @@ class TopMenu extends Component {
     let checkTeam = this.state.dropdownTeam ? ' top-menu--active': '';
     let checkCalendar = this.state.dropdownCalendar ? ' top-menu--active': '';
 
-    const {location} = this.props;
+    const {location, url_team} = this.props;
     let row;
     if(
-      location.pathname === '/' || 
-      location.pathname === '/t-task' ||
-      location.pathname === '/a-task' ||
-      location.pathname === '/d-task'
+      location.pathname === `/t/${url_team}` || 
+      location.pathname === `/t/${url_team}&-alert` ||
+      location.pathname === `/t/${url_team}&-done` ||
+      location.pathname === `/m/${url_team}` || 
+      location.pathname === `/m/${url_team}&-done` 
     ) {
       row = (
         <div className={'top-menu__calendar'+checkCalendar}>
@@ -89,7 +90,7 @@ class TopMenu extends Component {
     return (
       <div className="top-menu">
       	<div className="top-menu__center">
-	      	<NavLink exact to="" className="logo" activeClassName="logo--selected" >
+	      	<NavLink exact to={`/t/${url_team}`} className="logo" activeClassName="logo--selected" >
 	      		<img src={logo} className="top-menu__logo" alt="presentation" role="presentation" />
 	      	</NavLink>
       	</div>
