@@ -1,2 +1,82 @@
 @import '../../variables.css';
 
+.search {
+	background-color: white;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid #ebebeb;
+}
+.search__input {
+	flex: 1;
+	height: 60px;
+	border: 0 none;
+	font-size: var(--font-size-xxs);
+	padding: 0 10px 0 20px;
+	outline: 0;
+}
+.search__input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #d5d5d5;
+    font-weight: lighter;
+}
+.search__input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #d5d5d5;
+   opacity:  1;
+   font-weight: lighter;
+}
+.search__input::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #d5d5d5;
+   opacity:  1;
+   font-weight: lighter;
+}
+.search__input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #d5d5d5;
+   font-weight: lighter;
+}
+.search__input::-ms-input-placeholder { /* Microsoft Edge */
+   color:    #d5d5d5;
+   font-weight: lighter;
+}
+.search__file, .search__button {
+	width: 60px;
+	height: 60px;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.search__file {
+	background-color: #fafbfc
+}
+.search__file input {
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.search__preview {
+	position: absolute;
+	top: -30px;
+	white-space: nowrap;
+	left: 0;
+	background: #645bde;
+	color: white;
+	padding: 0 10px;
+	border-radius: 20px;
+	line-height: 26px;
+	height: 26px;
+}
+.search__button {
+	background-color: #d5d5d5;
+}
+.search__button i {
+	cursor: default;
+}
+.search__button--active {
+	background-color: var(--color-sub-main);
+	cursor: pointer;
+}
+.search__button--active i {
+	cursor: pointer;
+}

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import DropdownAvatar from '../../components/DropdownAvatar';
 import DropdownCalendar from '../../components/DropdownCalendar';
 import DropdownNotification from '../../components/DropdownNotification';
 import DropdownTeam from '../../components/DropdownTeam';
@@ -42,7 +41,6 @@ class PodPopover extends Component {
 
     // detect fetch
     switch(name) {
-      case 'dropdownAvatar':
       case 'dropdownCalendar':
         this._noFetch(name);
         break;
@@ -62,9 +60,7 @@ class PodPopover extends Component {
   }
 
   _noFetch(name) {
-    setTimeout(() => {
-      this.setState({ isLoading: true, name });
-    }, 500)
+    this.setState({ isLoading: true, name });
   }
 
   _fetchNotification(name) {
@@ -88,13 +84,6 @@ class PodPopover extends Component {
     let isCheckWidth = ' popover--xs';
     
     switch(name) {
-      case 'dropdownAvatar':
-        row = (
-          <DropdownAvatar 
-            onClose={this.hide} 
-          />
-        );
-        break;
       case 'dropdownNotification':
         row = (
           <DropdownNotification 

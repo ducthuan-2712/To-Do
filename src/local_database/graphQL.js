@@ -178,7 +178,9 @@ const graphQL = {
                 "type": "pdf"
             }
         ],
-        "status": 3
+        "status": 3,
+        "isChecked": false,
+        "isActive": false
     },
     {
         "id": "d-100000298886063-4244",
@@ -214,7 +216,9 @@ const graphQL = {
                 "type": "pdf"
             }
         ],
-        "status": 0
+        "status": 0,
+        "isChecked": false,
+        "isActive": false
     },
     {
         "id": "d-100000298886063-4245",
@@ -246,7 +250,9 @@ const graphQL = {
                 "type": "pdf"
             }
         ],
-        "status": 1
+        "status": 1,
+        "isChecked": false,
+        "isActive": false
     },
     {
         "id": "d-100000298886063-4246",
@@ -273,7 +279,9 @@ const graphQL = {
         ],
         "title": "Tích hợp React vào dự án",
         "file": [],
-        "status": 2
+        "status": 2,
+        "isChecked": false,
+        "isActive": false
     },
     {
         "id": "d-100000298886063-4247",
@@ -300,7 +308,9 @@ const graphQL = {
         ],
         "title": "Lên ý tưởng mobile app dự án iTask",
         "file": [],
-        "status": 0
+        "status": 0,
+        "isChecked": false,
+        "isActive": false
     },
     {
         "id": "d-100000398286363-42477",
@@ -327,7 +337,9 @@ const graphQL = {
         ],
         "title": "Lên ý tưởng mobile app dự án iTask",
         "file": [],
-        "status": 0
+        "status": 0,
+        "isChecked": false,
+        "isActive": false
     },
     {
         "id": "d-100000398286363-4248",
@@ -354,7 +366,9 @@ const graphQL = {
         ],
         "title": "Làm việc với khách hàng",
         "file": [],
-        "status": 1
+        "status": 1,
+        "isChecked": false,
+        "isActive": false
     },
     {
         "id": "d-100000298886063-4249",
@@ -381,7 +395,9 @@ const graphQL = {
         ],
         "title": "Tích hợp Node + Mongo vào dự án",
         "file": [],
-        "status": 2
+        "status": 2,
+        "isChecked": false,
+        "isActive": false
     }
   ],
   "initchat": [

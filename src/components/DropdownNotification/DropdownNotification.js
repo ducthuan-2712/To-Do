@@ -41,20 +41,21 @@ class DropdownNotification extends Component {
           title="Quản lý thông báo"
           callback={this.handleClose}
         />
-        <div className="dropdownNotification__box">
+        <div className="dropdownNotification__group">
           {dataNotification.map((data, i) => {
             return (
               <div key={"dropdownNotification__list"+i} className="dropdownNotification__list">
                 <div className="dropdownNotification__left">
                   <Avatar 
                     userID={data.user._id}
+                    loginType={data.user.is_login}
                     size="32"
                     type="circle" 
                   />
                 </div>
                 <div className="dropdownNotification__right">
                   <NavLink to={data.link} className="dropdownNotification__navlink" activeClassName="dropdownNotification__navlink--selected" onClick={this.handleClose}>
-                    <b className="dropdownNotification__userName">{data.userName}</b> <span dangerouslySetInnerHTML={{ __html: this.replace(data.content) }} />.
+                    <b className="dropdownNotification__userName">{data.user.name}</b> <span dangerouslySetInnerHTML={{ __html: this.replace(data.content) }} />.
                     <p className="dropdownNotification__time">{data.time}</p>
                   </NavLink>
                 </div>
@@ -65,7 +66,7 @@ class DropdownNotification extends Component {
         <div className="dropdownNotification__more">
           <Button
             type="link"
-            to="/notification/all"
+            to="/notifications"
             callback={this.handleClose}
             optionStyle={{ backgroundColor: "#655bde", color: "#fff", borderRadius: "4px" }}
           >

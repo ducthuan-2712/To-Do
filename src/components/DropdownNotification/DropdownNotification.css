@@ -1,5 +1,11 @@
 @import '../../variables.css';
 
+.dropdownNotification__group {
+	max-height: 250px;
+	margin-bottom: var(--pad-mar);
+	overflow-y: auto;
+}
+
 .dropdownNotification__list {
 	display: flex;
 	margin-bottom: 5px;
@@ -21,10 +27,4 @@
 	margin: 2px 0 0 0;
 	color: var(--color-silver-letter);
 	font-size: var(--font-size-letter-sub);
-}
-
-.dropdownNotification__box {
-	max-height: 250px;
-	margin-bottom: var(--pad-mar);
-	overflow-y: auto;
 }

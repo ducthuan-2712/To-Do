@@ -18,6 +18,7 @@
 }
 
 .menu__bottom {
+	margin-top: var(--pad-mar);
 	flex: 1;
 	overflow-y: auto;
 }
@@ -55,17 +56,21 @@
 	background-color: var(--color-white);
 }
 
-.menu__navlink i {
+.menu__navlink i,
+.menu__notification {
 	margin-right: var(--pad-mar);
 }
 
 .menu__avatar {
+	display: flex;
+	align-items: center;
 	flex: 1;
 	padding-left: var(--pad-mar);
 }
 
 .menu__logout {
 	padding: 0 var(--pad-mar);
+	height: 24px;
 }
 
 /* 
