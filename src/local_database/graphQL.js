@@ -17,15 +17,6 @@ const graphQL = {
   ],
   "inituser": [
     {
-        "id": 1,
-        "id_user": 100000298886063,
-        "is_login": "facebook",
-        "name": "Thuan Huynh Duc",
-        "email": "thuanhuynhduc2712@gmail.com",
-        "url_team": 235148050,
-        "admin_url_team": true
-    },
-    {
         "id": 2,
         "id_user": 100002879180263,
         "is_login": "google",
@@ -33,6 +24,15 @@ const graphQL = {
         "email": "khanhphi@gmail.com",
         "url_team": 235148050,
         "admin_url_team": false
+    },
+    {
+        "id": 1,
+        "id_user": 100000298886063,
+        "is_login": "facebook",
+        "name": "Thuan Huynh Duc",
+        "email": "thuanhuynhduc2712@gmail.com",
+        "url_team": 235148050,
+        "admin_url_team": true
     },
     {
         "id": 3,
@@ -146,6 +146,7 @@ const graphQL = {
         "is_flag": true,
         "creatAt": "2017-06-26T23:51:48.050Z",
         "updateAt": "2017-06-26T23:51:48.050Z",
+        "alertAt": "2017-07-25T23:51:48.050Z",
         "assignBy": {
             "_id": 100000298886063,
             "is_login": "facebook",
@@ -179,8 +180,7 @@ const graphQL = {
             }
         ],
         "status": 3,
-        "isChecked": false,
-        "isActive": false
+        "isChecked": true
     },
     {
         "id": "d-100000298886063-4244",
@@ -188,6 +188,7 @@ const graphQL = {
         "is_flag": false,
         "creatAt": "2017-06-26T23:51:48.050Z",
         "updateAt": "2017-06-26T23:51:48.050Z",
+        "alertAt": "2017-07-25T23:51:48.050Z",
         "assignBy": {
             "_id": 100000298886063,
             "is_login": "facebook",
@@ -217,8 +218,7 @@ const graphQL = {
             }
         ],
         "status": 0,
-        "isChecked": false,
-        "isActive": false
+        "isChecked": false
     },
     {
         "id": "d-100000298886063-4245",
@@ -226,6 +226,7 @@ const graphQL = {
         "is_flag": false,
         "creatAt": "2017-06-26T23:51:48.050Z",
         "updateAt": "2017-06-26T23:51:48.050Z",
+        "alertAt": "2017-07-14T23:51:48.050Z",
         "assignBy": {
             "_id": 100000298886063,
             "is_login": "facebook",
@@ -251,8 +252,7 @@ const graphQL = {
             }
         ],
         "status": 1,
-        "isChecked": false,
-        "isActive": false
+        "isChecked": false
     },
     {
         "id": "d-100000298886063-4246",
@@ -260,6 +260,7 @@ const graphQL = {
         "is_flag": false,
         "creatAt": "2017-06-24T23:51:48.050Z",
         "updateAt": "2017-06-24T23:51:48.050Z",
+        "alertAt": "2017-07-14T23:51:48.050Z",
         "assignBy": {
             "_id": 100000298886063,
             "is_login": "facebook",
@@ -280,8 +281,7 @@ const graphQL = {
         "title": "Tích hợp React vào dự án",
         "file": [],
         "status": 2,
-        "isChecked": false,
-        "isActive": false
+        "isChecked": false
     },
     {
         "id": "d-100000298886063-4247",
@@ -289,6 +289,7 @@ const graphQL = {
         "is_flag": true,
         "creatAt": "2017-06-23T23:51:48.050Z",
         "updateAt": "2017-06-23T23:51:48.050Z",
+        "alertAt": "2017-07-14T23:51:48.050Z",
         "assignBy": {
             "_id": 100000298886063,
             "is_login": "facebook",
@@ -309,8 +310,7 @@ const graphQL = {
         "title": "Lên ý tưởng mobile app dự án iTask",
         "file": [],
         "status": 0,
-        "isChecked": false,
-        "isActive": false
+        "isChecked": false
     },
     {
         "id": "d-100000398286363-42477",
@@ -318,6 +318,7 @@ const graphQL = {
         "is_flag": true,
         "creatAt": "2017-06-23T23:51:48.050Z",
         "updateAt": "2017-06-23T23:51:48.050Z",
+        "alertAt": "2017-07-14T23:51:48.050Z",
         "assignBy": {
             "_id": 100000398286363,
             "is_login": "google",
@@ -338,8 +339,7 @@ const graphQL = {
         "title": "Lên ý tưởng mobile app dự án iTask",
         "file": [],
         "status": 0,
-        "isChecked": false,
-        "isActive": false
+        "isChecked": false
     },
     {
         "id": "d-100000398286363-4248",
@@ -347,6 +347,7 @@ const graphQL = {
         "is_flag": false,
         "creatAt": "2017-06-23T23:51:48.050Z",
         "updateAt": "2017-06-23T23:51:48.050Z",
+        "alertAt": "2017-07-14T23:51:48.050Z",
         "assignBy": {
             "_id": 100000398286363,
             "is_login": "google",
@@ -367,8 +368,7 @@ const graphQL = {
         "title": "Làm việc với khách hàng",
         "file": [],
         "status": 1,
-        "isChecked": false,
-        "isActive": false
+        "isChecked": false
     },
     {
         "id": "d-100000298886063-4249",
@@ -376,6 +376,7 @@ const graphQL = {
         "is_flag": false,
         "creatAt": "2017-06-21T23:51:48.050Z",
         "updateAt": "2017-06-21T23:51:48.050Z",
+        "alertAt": "2017-07-14T23:51:48.050Z",
         "assignBy": {
             "_id": 100000298886063,
             "is_login": "facebook",
@@ -396,8 +397,7 @@ const graphQL = {
         "title": "Tích hợp Node + Mongo vào dự án",
         "file": [],
         "status": 2,
-        "isChecked": false,
-        "isActive": false
+        "isChecked": false
     }
   ],
   "initchat": [

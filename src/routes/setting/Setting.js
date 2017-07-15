@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 // container
-import General from './container/general';
 import Invite from './container/invite';
 
 import './Setting.css';
@@ -33,8 +32,6 @@ class Setting extends Component {
     const {setting} = this.props.match.params;
 
     switch(setting) {
-      case 'general':
-        return <General />
       case 'invite':
         return <Invite team={this.state.team} />
       default:

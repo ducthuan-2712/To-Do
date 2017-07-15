@@ -2,20 +2,12 @@
  * @flow
  */
 
-import {
-  FETCH_LOADING,
-  ALL_LOADING
-} from '../actions/loading';
-
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_LOGOUT = 'USER_LOGOUT';
 
 
 export function logInWithFacebook() {
 	return async (dispatch) => {
-		// load done data
-		dispatch({ type: FETCH_LOADING });
-
 		try {
 			const login = {
 				id: 100000298886063,
@@ -25,9 +17,6 @@ export function logInWithFacebook() {
 		        url_team: 235148050,
 		        admin_url_team: true
 			}
-
-			// load done data
-			dispatch({ type: ALL_LOADING });
 
 			return dispatch({ 
 				type: USER_LOGIN, 

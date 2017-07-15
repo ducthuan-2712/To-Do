@@ -26,7 +26,11 @@ class Button extends React.Component {
         </NavLink>
       );      
     } else {
-      return null
+      return (
+        <div className={'button'} style={optionStyle} onClick={this.handleClick.bind(this)}>
+          {children}
+        </div>
+      )
     }
   }
 }

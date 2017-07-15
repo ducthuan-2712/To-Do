@@ -73,27 +73,30 @@ class Search extends Component {
 
   render() {
     const { valueTask, file } = this.state;
+    const { noAttached, placeholder } = this.props;
 
     return (
       <div className="search">
-        <div className="search__file">
-          {
-            Object.keys(file).length === 0 && file.constructor === Object
-              ? null
-              : <span className="search__preview">{file.name} - <b>{this.getMB(file.size)}</b></span>
-          }
-          <input 
-            type="file" 
-            accept="image/*"
-            defaultValue={this.state.file}
-            onChange={this.handleFileUpload} 
-          />
-          <Icon size="xs" name="attach_file" />
-        </div>
+        {!noAttached &&
+          <div className="search__file">
+            {
+              Object.keys(file).length === 0 && file.constructor === Object
+                ? null
+                : <span className="search__preview">{file.name} - <b>{this.getMB(file.size)}</b></span>
+            }
+            <input 
+              type="file" 
+              accept="image/*"
+              defaultValue={this.state.file}
+              onChange={this.handleFileUpload} 
+            />
+            <Icon size="xs" name="attach_file" />
+          </div>
+        }
         <input 
           type='text' 
           className="search__input"
-          placeholder='Tiêu đề công việc ?'
+          placeholder={placeholder ? placeholder : 'Tiêu đề công việc ?'}
           value={this.state.valueTask || ''} 
           onChange={this.updateNewTask} 
           onKeyDown={this.onPressEnter} 

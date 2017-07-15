@@ -96,3 +96,6 @@
 .task__right--active .checkbox {
 	opacity: 1 !important;
 }
+.task__right--active {
+	opacity: 0.5;
+}

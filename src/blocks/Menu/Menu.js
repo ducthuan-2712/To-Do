@@ -28,7 +28,7 @@ class Menu extends Component {
       isOpen: true,
       accordionHome: true,
       accordionMe: true,
-      accordionSetting: false,
+      // accordionSetting: false,
       dropdownNotification: false,
     }
 
@@ -52,9 +52,9 @@ class Menu extends Component {
       case 'accordionHome':
         this.setState({ accordionHome: !this.state.accordionHome });
         break;
-      case 'accordionSetting':
-        this.setState({ accordionSetting: !this.state.accordionSetting });
-        break;
+      // case 'accordionSetting':
+      //   this.setState({ accordionSetting: !this.state.accordionSetting });
+      //   break;
       case 'accordionMe':
         this.setState({ accordionMe: !this.state.accordionMe });
         break;
@@ -163,18 +163,18 @@ class Menu extends Component {
             </NavLink>
           </Accordion>
 
-          <Accordion 
-            active={this.state.accordionSetting}
-            name="accordionSetting"
-            color="white"
-            title="Cấu hình"
-            callback={this.handleCallbackAccordion}
-          > 
-            <NavLink to="/setting/general" className="menu__navlink" activeClassName="menu__navlink--selected">
-              <Icon size="xs" name="settings" color="white" />
-              <span>Cơ bản</span>
-            </NavLink>
-          </Accordion>
+          {/*<Accordion 
+                active={this.state.accordionSetting}
+                name="accordionSetting"
+                color="white"
+                title="Cấu hình"
+                callback={this.handleCallbackAccordion}
+              > 
+                <NavLink to="/setting/general" className="menu__navlink" activeClassName="menu__navlink--selected">
+                  <Icon size="xs" name="settings" color="white" />
+                  <span>Cơ bản</span>
+                </NavLink>
+              </Accordion>*/}
         </div>
       </div>
     );
