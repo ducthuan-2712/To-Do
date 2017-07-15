@@ -3,16 +3,16 @@
  */
 
 import React, { Component } from 'react';
+import { withRouter, NavLink } from 'react-router-dom';
 import { Helmet } from "react-helmet"; 
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import _ from 'lodash';
-import moment from 'moment';
 
 // Components
 import Icon from '../../components/Icon';
 import Checkbox from '../../components/Checkbox';
 import StatusCode from '../../components/StatusCode';
+import RenderDate from '../../components/RenderDate';
 
 // Blocks
 import Search from '../../blocks/Search';
@@ -29,46 +29,93 @@ class Home extends Component {
       justDemoData: graphQL['inittask'],
       myObjectsFlag: [],
       myObjectsNoFlag: [],
+      status: '',
       isloading: false
     }
 
     this.onCreateTask = this.onCreateTask.bind(this);
     this.handleTask = this.handleTask.bind(this);
     this.handleTaskNoFlag = this.handleTaskNoFlag.bind(this);
-    this.handleChat = this.handleChat.bind(this);
     this.handleFlag = this.handleFlag.bind(this);
   }
 
   componentDidMount() {
-    const {idteam} = this.props.match.params;
-    console.log(idteam);
-    
-    this._initList();
+    let { idteam } = this.props.match.params;
+    let { url_team } = this.props.user;
+
+    this._initList(_.trim(_.replace(idteam, JSON.stringify(url_team), ''), '&-'));
+    this.setState({status: _.trim(_.replace(idteam, JSON.stringify(url_team), ''), '&-')})
   }
 
-  _initList() {
-    const { justDemoData } = this.state;
+  _initList(statusCheck) {
+    let { justDemoData, isloading } = this.state;
 
-    if (justDemoData.length !== 0 && !this.state.isloading) {
+    if (justDemoData.length !== 0 && !isloading) {
 
-      this.setState({ myObjectsFlag: _.filter(justDemoData, ['is_flag', true]) })
 
+
+      let myObjectsFlag = _.filter(justDemoData, ['is_flag', true])
       let myObjectsNoFlag = _.filter(justDemoData, ['is_flag', false])
-      _.sortBy(myObjectsNoFlag, 'updateAt');
 
+      if (statusCheck === 'alert') {
+        _.forEach(myObjectsFlag, (value, key) => {
+          let getTimes = new Date(value.alertAt).getTime();
+          let today = new Date().getTime();
+
+          if (today > getTimes) {
+            myObjectsFlag = _.filter(myObjectsFlag, ['alertAt', value.alertAt]);
+          }
+        })
+
+        _.forEach(myObjectsNoFlag, (value, key) => {
+          let getTimes = new Date(value.alertAt).getTime();
+          let today = new Date().getTime();
+
+          if (today > getTimes) {
+            myObjectsNoFlag = _.filter(myObjectsNoFlag, ['alertAt', value.alertAt]);
+          }
+        })
+      }
+
+      _.sortBy(myObjectsNoFlag, 'updateAt');
+      _.forEach(myObjectsFlag, (value, keys) => {
+        myObjectsFlag[keys].isdelete = false
+      })
       _.forEach(myObjectsNoFlag, (value, key) => {
         if (key !== 0) {
           if (value.updateAt === myObjectsNoFlag[key-1].updateAt) {
             myObjectsNoFlag[key].merge = true
+            myObjectsNoFlag[key].isdelete = false
           } else {
             myObjectsNoFlag[key].merge = false
+            myObjectsNoFlag[key].isdelete = false
           }
         } else {
           myObjectsNoFlag[key].merge = false
-        }   
+          myObjectsNoFlag[key].isdelete = false
+        }
       })
 
-      this.setState({isloading: true, myObjectsNoFlag})
+      if (statusCheck === 'done') {
+        myObjectsFlag = _.filter(myObjectsFlag, ['isChecked', true])
+        _.forEach(myObjectsFlag, (value, keys) => {
+          myObjectsFlag[keys].isdelete = true
+        })
+
+        myObjectsNoFlag = _.filter(myObjectsNoFlag, ['isChecked', true])
+        _.forEach(myObjectsNoFlag, (value, keys) => {
+          myObjectsNoFlag[keys].isdelete = true
+        })
+      }
+
+
+
+      // all done
+      this.setState({
+        isloading: true, 
+        myObjectsFlag,
+        myObjectsNoFlag
+      })
     }
   }
 
@@ -82,12 +129,10 @@ class Home extends Component {
     if (!myObjectsFlag[row].isChecked) {
       if (window.confirm("Bạn có muốn hoàn tất task này?")) {
         myObjectsFlag[row].isChecked = true;
-        myObjectsFlag[row].isActive = true;
       }
     } else {
       if (window.confirm("Hủy review")) {
         myObjectsFlag[row].isChecked = false;
-        myObjectsFlag[row].isActive = false;
       }
     }
 
@@ -100,20 +145,14 @@ class Home extends Component {
     if (!myObjectsNoFlag[row].isChecked) {
       if (window.confirm("Bạn có muốn hoàn tất task này?")) {
         myObjectsNoFlag[row].isChecked = true;
-        myObjectsNoFlag[row].isActive = true;
       }
     } else {
       if (window.confirm("Hủy review")) {
         myObjectsNoFlag[row].isChecked = false;
-        myObjectsNoFlag[row].isActive = false;
       }
     }
 
     this.setState({myObjectsNoFlag})
-  }
-
-  handleChat(result, row) {
-    
   }
 
   handleFlag(result, row) {
@@ -121,7 +160,7 @@ class Home extends Component {
   }
 
   render() {
-    const { isloading, myObjectsFlag, myObjectsNoFlag } = this.state;
+    const { isloading, myObjectsFlag, myObjectsNoFlag, status } = this.state;
 
     return (
       <div className="task">
@@ -131,9 +170,10 @@ class Home extends Component {
           <meta name="description" content="react-todos application" />
         </Helmet>
         
-        <div className="task__input task__input--search">
-          <Search callback={this.onCreateTask} />
-        </div>
+        {status === 'alert' || status === 'done'
+          ? null
+          : <div className="task__input task__input--search"><Search callback={this.onCreateTask} /></div>
+        }
         {isloading && this.renderHTML(myObjectsFlag, myObjectsNoFlag)}
       </div>
     );
@@ -150,15 +190,18 @@ class Home extends Component {
             {
               myObjectsFlag.map((result, i) => {
                 return (
-                  <div key={result.id} className={result.isActive ? "task__right task__right--active": "task__right"}>
+                  <div key={result.id} className={result.isChecked ? "task__right task__right--active": "task__right"}>
                     <Checkbox callback={this.handleTask} row={i} isChecked={result.isChecked} />
                     <label>
                       {result.title}
                       <StatusCode code={result.status} />
                     </label>
                     <ul className="task__tool">
-                      <li className="task__chat" onClick={() => this.handleChat(result, i)}>
-                        <Icon size="xs" name="chat_bubble_outline" />
+                      {result.isdelete && <li className="task__delte" onClick={() => this.handleDelete(result, i)}><Icon size="xs" name="delete" /></li>}
+                      <li className="task__chat">
+                        <NavLink to={`/d/${result.id}`}>
+                          <Icon size="xs" name="chat_bubble_outline" />
+                        </NavLink>
                       </li>
                       <li className="task__flag" onClick={() => this.handleFlag(result, i)}>
                         <Icon size="xs" name="star_border" />
@@ -175,17 +218,20 @@ class Home extends Component {
             return (
               <div key={result.id} className={!result.merge ? "task__list" : "task__list task__list--custom"}>
                 <div className="task__left">
-                  {!result.merge ? this.renderDate(result.updateAt) : <span></span>}
+                  {!result.merge ? <RenderDate date={result.updateAt} /> : <span></span>}
                 </div>
-                <div className={result.isActive ? "task__right task__right--active": "task__right"}>
+                <div className={result.isChecked ? "task__right task__right--active": "task__right"}>
                   <Checkbox callback={this.handleTaskNoFlag} row={i} isChecked={result.isChecked} />
                   <label>
                     {result.title}
                     <StatusCode code={result.status} />
                   </label>
                   <ul className="task__tool">
-                    <li className="task__chat" onClick={() => this.handleChat(result, i)}>
-                      <Icon size="xs" name="chat_bubble_outline" />
+                    {result.isdelete && <li className="task__delte" onClick={() => this.handleDelete(result, i)}><Icon size="xs" name="delete" /></li>}
+                    <li className="task__chat">
+                      <NavLink to={`/d/${result.id}`}>
+                        <Icon size="xs" name="chat_bubble_outline" />
+                      </NavLink>
                     </li>
                     <li className="task__flag" onClick={() => this.handleFlag(result, i)}>
                       <Icon size="xs" name="star_border" />
@@ -198,37 +244,6 @@ class Home extends Component {
         }
       </div>
     )
-  }
-
-  renderDate(date) {
-    var format = moment(date).format('DD/MM');
-    var getdate = new Date(date).getDay();
-
-    var day;
-    switch(getdate) {
-      case 1:
-        day = <span>Thứ 3<b>{format}</b></span>
-        break
-      case 2:
-        day = <span>Thứ 4<b>{format}</b></span>
-        break
-      case 3:
-        day = <span>Thứ 5<b>{format}</b></span>
-        break
-      case 4:
-        day = <span>Thứ 6<b>{format}</b></span>
-        break
-      case 5:
-        day = <span>Thứ 7<b>{format}</b></span>
-        break
-      case 6:
-        day = <span>Chủ nhật<b>{format}</b></span>
-        break
-      default:
-        day = <span>Thứ 2<b>{format}</b></span>
-    }
-
-    return day;
   }
 }
 
