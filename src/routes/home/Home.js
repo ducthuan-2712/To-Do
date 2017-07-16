@@ -3,21 +3,15 @@
  */
 
 import React, { Component } from 'react';
-import { withRouter, NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { Helmet } from "react-helmet"; 
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
-// Components
-import Icon from '../../components/Icon';
-import Checkbox from '../../components/Checkbox';
-import StatusCode from '../../components/StatusCode';
-import RenderDate from '../../components/RenderDate';
+import RenderTask from '../../components/RenderTask';
 
 // Blocks
 import Search from '../../blocks/Search';
-
-import './Home.css';
 
 // test data
 import graphQL from '../../local_database/graphQL';
@@ -37,14 +31,16 @@ class Home extends Component {
     this.handleTask = this.handleTask.bind(this);
     this.handleTaskNoFlag = this.handleTaskNoFlag.bind(this);
     this.handleFlag = this.handleFlag.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
     let { idteam } = this.props.match.params;
     let { url_team } = this.props.user;
+    let status = _.trim(_.replace(idteam, JSON.stringify(url_team), ''), '&-');
 
-    this._initList(_.trim(_.replace(idteam, JSON.stringify(url_team), ''), '&-'));
-    this.setState({status: _.trim(_.replace(idteam, JSON.stringify(url_team), ''), '&-')})
+    this._initList(status);
+    this.setState({status});
   }
 
   _initList(statusCheck) {
@@ -159,6 +155,10 @@ class Home extends Component {
     
   }
 
+  handleDelete(result, row) {
+
+  }
+
   render() {
     const { isloading, myObjectsFlag, myObjectsNoFlag, status } = this.state;
 
@@ -174,76 +174,17 @@ class Home extends Component {
           ? null
           : <div className="task__input task__input--search"><Search callback={this.onCreateTask} /></div>
         }
-        {isloading && this.renderHTML(myObjectsFlag, myObjectsNoFlag)}
-      </div>
-    );
-  }
-
-  renderHTML(myObjectsFlag, myObjectsNoFlag) {
-    return (
-      <div className="task__group">
-        <div className="task__list task__list--flag">
-          <div className="task__left"> 
-            <Icon size="xs" name="star" color="active" />
-          </div>
-          <div className="task__right--flag">
-            {
-              myObjectsFlag.map((result, i) => {
-                return (
-                  <div key={result.id} className={result.isChecked ? "task__right task__right--active": "task__right"}>
-                    <Checkbox callback={this.handleTask} row={i} isChecked={result.isChecked} />
-                    <label>
-                      {result.title}
-                      <StatusCode code={result.status} />
-                    </label>
-                    <ul className="task__tool">
-                      {result.isdelete && <li className="task__delte" onClick={() => this.handleDelete(result, i)}><Icon size="xs" name="delete" /></li>}
-                      <li className="task__chat">
-                        <NavLink to={`/d/${result.id}`}>
-                          <Icon size="xs" name="chat_bubble_outline" />
-                        </NavLink>
-                      </li>
-                      <li className="task__flag" onClick={() => this.handleFlag(result, i)}>
-                        <Icon size="xs" name="star_border" />
-                      </li>
-                    </ul>
-                  </div>
-                )
-              })
-            }
-          </div>
-        </div>
-        {
-          myObjectsNoFlag.map((result, i) => {
-            return (
-              <div key={result.id} className={!result.merge ? "task__list" : "task__list task__list--custom"}>
-                <div className="task__left">
-                  {!result.merge ? <RenderDate date={result.updateAt} /> : <span></span>}
-                </div>
-                <div className={result.isChecked ? "task__right task__right--active": "task__right"}>
-                  <Checkbox callback={this.handleTaskNoFlag} row={i} isChecked={result.isChecked} />
-                  <label>
-                    {result.title}
-                    <StatusCode code={result.status} />
-                  </label>
-                  <ul className="task__tool">
-                    {result.isdelete && <li className="task__delte" onClick={() => this.handleDelete(result, i)}><Icon size="xs" name="delete" /></li>}
-                    <li className="task__chat">
-                      <NavLink to={`/d/${result.id}`}>
-                        <Icon size="xs" name="chat_bubble_outline" />
-                      </NavLink>
-                    </li>
-                    <li className="task__flag" onClick={() => this.handleFlag(result, i)}>
-                      <Icon size="xs" name="star_border" />
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            );
-          })
+        {isloading && <RenderTask 
+                        myObjectsFlag={myObjectsFlag} 
+                        myObjectsNoFlag={myObjectsNoFlag}
+                        onCheckBox={this.handleTask}
+                        onCheckBoxNoFlag={this.handleTaskNoFlag}
+                        onDelete={this.handleDelete}
+                        onFlag={this.handleFlag}
+                      />
         }
       </div>
-    )
+    );
   }
 }
 
