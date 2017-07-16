@@ -53,6 +53,24 @@ class Home extends Component {
       let myObjectsFlag = _.filter(justDemoData, ['is_flag', true])
       let myObjectsNoFlag = _.filter(justDemoData, ['is_flag', false])
 
+      _.forEach(myObjectsFlag, (value, key) => {
+        let getTimes = new Date(value.alertAt).getTime();
+        let today = new Date().getTime();
+
+        if (today > getTimes) {
+          myObjectsFlag[key].alert = true;
+        }
+      })
+
+      _.forEach(myObjectsNoFlag, (value, key) => {
+        let getTimes = new Date(value.alertAt).getTime();
+        let today = new Date().getTime();
+
+        if (today > getTimes) {
+          myObjectsNoFlag[key].alert = true; 
+        }
+      })
+
       if (statusCheck === 'alert') {
         _.forEach(myObjectsFlag, (value, key) => {
           let getTimes = new Date(value.alertAt).getTime();
