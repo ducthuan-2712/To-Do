@@ -19,6 +19,7 @@ import LoginScreen from '../login';
 // Routes
 import Home from '../routes/home';
 import MyTask from '../routes/myTask';
+import DetailTask from '../routes/detailTask';
 import Setting from '../routes/setting';
 import Notifications from '../routes/notifications';
 import NoFound from '../routes/noFound';
@@ -45,6 +46,10 @@ const routes = [
   {
     path: '/m/:idteam?',
     component: MyTask,
+  },
+  {
+    path: '/d/:iddetail?',
+    component: DetailTask,
   },
   {
     path: '/setting/:setting?',

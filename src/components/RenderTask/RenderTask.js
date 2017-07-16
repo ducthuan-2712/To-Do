@@ -34,7 +34,7 @@ export default class RenderTask extends Component {
                       <StatusCode code={result.status} />
                     </label>
                     <ul className="task__tool">
-                      {result.isdelete && <li className="task__delte" onClick={this.props.onDelete(result, i)}><Icon size="xs" name="delete" /></li>}
+                      {result.isdelete && <li className="task__delete" onClick={() => this.props.onDelete(result, i)}><Icon size="xs" name="delete" /></li>}
                       <li className="task__chat">
                         <NavLink to={`/d/${result.id}`}>
                           <Icon size="xs" name="chat_bubble_outline" />
@@ -44,6 +44,7 @@ export default class RenderTask extends Component {
                         <Icon size="xs" name="star_border" />
                       </li>
                     </ul>
+                    {result.alert && <span className="task__alert"></span>}
                   </div>
                 )
               })
@@ -64,7 +65,7 @@ export default class RenderTask extends Component {
                     <StatusCode code={result.status} />
                   </label>
                   <ul className="task__tool">
-                    {result.isdelete && <li className="task__delte" onClick={this.props.onDelete(result, i)}><Icon size="xs" name="delete" /></li>}
+                    {result.isdelete && <li className="task__delete" onClick={() => this.props.onDelete(result, i)}><Icon size="xs" name="delete" /></li>}
                     <li className="task__chat">
                       <NavLink to={`/d/${result.id}`}>
                         <Icon size="xs" name="chat_bubble_outline" />
@@ -74,6 +75,7 @@ export default class RenderTask extends Component {
                       <Icon size="xs" name="star_border" />
                     </li>
                   </ul>
+                  {result.alert && <span className="task__alert"></span>}
                 </div>
               </div>
             );
