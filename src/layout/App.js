@@ -91,9 +91,18 @@ class App extends Component {
   
   render() {
     const { isLoggedIn, id, type, name, email, url_team, admin_url_team } = this.props.user;
-    if (!isLoggedIn) {
-      return <LoginScreen />
-    }
+    const { location } = this.props;
+
+    const isHidden = !!(
+      location.state &&
+      location.state.hidden &&
+      this.previousLocation !== location // not initial render
+    );
+
+    // Tạm thời comment lại để làm tính năng frontend
+    // if (!isLoggedIn) {
+    //   return <LoginScreen />
+    // }
 
     return (
       <div className="page">
@@ -101,6 +110,7 @@ class App extends Component {
 
         <div className="page__left">
           <Menu 
+            isHidden={isHidden}
             url_team={url_team} 
             id={id}
             type={type}
@@ -111,9 +121,7 @@ class App extends Component {
           />
         </div>
         <div className="page__right">
-          <div className="page__top">
-            <TopMenu location={this.props.location} url_team={url_team} />
-          </div>
+          {!isHidden && <div className="page__top"><TopMenu location={this.props.location} url_team={url_team} /></div>}
           <div className="page__box">
             <CSSTransitionGroup
               component="div"

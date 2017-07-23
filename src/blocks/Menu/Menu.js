@@ -17,6 +17,9 @@ import PodPopover from '../PodPopover';
 
 import './Menu.css';
 
+import logo from '../../img/logo-small-white.png';
+// import logo2x from '../../logo-small-white@2x.png';
+
 const propTypes = {
   // dispatch: PropTypes.func.isRequired,
 };
@@ -75,7 +78,7 @@ class Menu extends Component {
 
   render() {
     const {isOpen} = this.state;
-    const {id, type, url_team, admin_url_team} = this.props;
+    const {id, type, url_team, admin_url_team, isHidden} = this.props;
 
     const activeMenu = isOpen ? ' menu--active' : '';
 
@@ -84,13 +87,11 @@ class Menu extends Component {
         <div className="menu__top">
           <div className="menu__left">
             <div className="menu__avatar">
-              <Avatar 
-                userID={id}
-                loginType={type}
-                border
-                size="40"
-                type="circle" 
-              />
+              {
+                isHidden
+                  ? <NavLink exact to={`/t/${url_team}`} className="logo" activeClassName="logo--selected"> <img src={logo} className="top-menu__logo" alt="presentation" role="presentation" /></NavLink>
+                  : <Avatar userID={id} loginType={type} size="40" type="circle" border />
+              }
               <a className="menu__logout" onClick={this.logout}>
                 <Icon size="xs" name="exit_to_app" color="white" />
               </a>

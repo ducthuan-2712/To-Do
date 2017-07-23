@@ -1,2 +1,18 @@
 @import '../../variables.css';
 
+.dtask__group {
+	height: var(--length-full);
+	display: flex;
+}
+.dtask__chat {
+	flex: 1;
+	height: 3000px;
+}
+.dtask__info {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-white);
+    width: 280px;
+    height: 100%;
+    overflow-y: auto;
+}

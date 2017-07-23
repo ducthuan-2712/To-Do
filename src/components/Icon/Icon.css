@@ -6,6 +6,10 @@
 }
 
 /* SIZES */
+.icon--xxs {
+	font-size: var(--font-size-xxs);
+}
+
 .icon--xs {
   font-size: var(--font-size-xs);
 }
@@ -29,4 +33,8 @@
 
 .icon--silver {
 	color: var(--color-silver);
+}
+
+.icon--dark-silver {
+	color: var(--color-silver-letter);
 }

@@ -100,11 +100,14 @@ class MyTask extends Component {
         if (key !== 0) {
           if (value.updateAt === myObjectsNoFlag[key-1].updateAt) {
             myObjectsNoFlag[key].merge = true
+            myObjectsNoFlag[key].isdelete = false
           } else {
             myObjectsNoFlag[key].merge = false
+            myObjectsNoFlag[key].isdelete = false
           }
         } else {
           myObjectsNoFlag[key].merge = false
+          myObjectsNoFlag[key].isdelete = false
         }
       })
 
@@ -156,7 +159,17 @@ class MyTask extends Component {
   }
 
   handleFlag(result, row) {
-    
+    let { justDemoData } = this.state;
+    let index = _.findIndex(justDemoData, ['id', result.id]);
+
+    if (result.is_flag) {
+      justDemoData[index].is_flag = false
+    } else {
+      justDemoData[index].is_flag = true
+    }
+
+    this.setState({ justDemoData });
+    this._initList();
   }
 
   render() {

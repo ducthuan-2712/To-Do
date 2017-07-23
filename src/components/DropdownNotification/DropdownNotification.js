@@ -70,7 +70,7 @@ class DropdownNotification extends Component {
             callback={this.handleClose}
             optionStyle={{ backgroundColor: "#655bde", color: "#fff", borderRadius: "4px" }}
           >
-            <Icon size="xs" name="view_list" />
+            <Icon size="xs" name="check" />
             <span>Xem tất cả</span>
           </Button>
         </div>
