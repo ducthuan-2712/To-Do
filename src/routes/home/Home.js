@@ -44,9 +44,9 @@ class Home extends Component {
   }
 
   _initList(statusCheck) {
-    let { justDemoData, isloading } = this.state;
+    let { justDemoData } = this.state;
 
-    if (justDemoData.length !== 0 && !isloading) {
+    if (justDemoData.length !== 0) {
 
 
 
@@ -170,7 +170,17 @@ class Home extends Component {
   }
 
   handleFlag(result, row) {
-    
+    let { justDemoData } = this.state;
+    let index = _.findIndex(justDemoData, ['id', result.id]);
+
+    if (result.is_flag) {
+      justDemoData[index].is_flag = false
+    } else {
+      justDemoData[index].is_flag = true
+    }
+
+    this.setState({ justDemoData });
+    this._initList();
   }
 
   handleDelete(result, row) {

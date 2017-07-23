@@ -37,7 +37,7 @@ class DropdownTeam extends Component {
     return (
       <div className="dropdownTeam">
         <DropdownHead 
-          title="Quản lý team"
+          title="Thành viên"
           callback={this.handleClose}
         />
         <div className="dropdownTeam__box">
@@ -62,8 +62,8 @@ class DropdownTeam extends Component {
             callback={this.handleClose}
             optionStyle={{ backgroundColor: "#FFF", color: "#313131", borderRadius: "4px", border: '1px solid #ddd' }}
           >
-            <Icon size="xs" name="add" />
-            <span>Thêm thành viên</span>
+            <Icon size="xs" name="people" />
+            <span>Quản lý</span>
           </Button>
         </div>
       </div>

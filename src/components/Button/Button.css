@@ -7,3 +7,7 @@
   padding: 5px 0;
   cursor: pointer;
 }
+
+.button i {
+	padding-right: var(--pad-mar);
+}

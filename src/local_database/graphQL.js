@@ -155,7 +155,27 @@ const graphQL = {
         "assignTo": [
             {
                 "_id": 100002879180263,
-                "is_login": "google",
+                "is_login": "facebook",
+                "name": "Đỗ Trương Phi Khanh"
+            },
+            {       
+                "_id": 100000298886063,
+                "is_login": "facebook",
+                "name": "Thuan Huynh Duc"
+            },
+            {
+                "_id": 100002879180263,
+                "is_login": "facebook",
+                "name": "Đỗ Trương Phi Khanh"
+            },
+            {       
+                "_id": 100000298886063,
+                "is_login": "facebook",
+                "name": "Thuan Huynh Duc"
+            },
+            {
+                "_id": 100002879180263,
+                "is_login": "facebook",
                 "name": "Đỗ Trương Phi Khanh"
             },
             {       
@@ -165,6 +185,7 @@ const graphQL = {
             }
         ],
         "title": "Không thể xem được đường dẫn",
+        "description": "Không thể xem được đường dẫn",
         "file": [
             {
                 "url": "sites.materdei.ie/logos/images/stories/section_E/examination%20of%20rublev.doc",
@@ -207,6 +228,7 @@ const graphQL = {
             }
         ],
         "title": "Hoàn thiện bộ nhận dạng thương hiệu công ty Primelabo",
+        "description": "Không thể xem được đường dẫn",
         "file": [
             {
                 "url": "sites.materdei.ie/logos/images/stories/section_E/examination%20of%20rublev.doc",
@@ -245,6 +267,7 @@ const graphQL = {
             }
         ],
         "title": "Lấy yêu cầu khách hàng",
+        "description": "Không thể xem được đường dẫn",
         "file": [
             {
                 "url": "https://cdn.selinc.com/assets/Literature/Product%20Literature/Data%20Sheets/ICON_DS_20170303.pdf",
@@ -279,6 +302,7 @@ const graphQL = {
             }
         ],
         "title": "Tích hợp React vào dự án",
+        "description": "Không thể xem được đường dẫn",
         "file": [],
         "status": 2,
         "isChecked": false
@@ -308,6 +332,7 @@ const graphQL = {
             }
         ],
         "title": "Lên ý tưởng mobile app dự án iTask",
+        "description": "Không thể xem được đường dẫn",
         "file": [],
         "status": 0,
         "isChecked": false
@@ -337,6 +362,7 @@ const graphQL = {
             }
         ],
         "title": "Lên ý tưởng mobile app dự án iTask",
+        "description": "Không thể xem được đường dẫn",
         "file": [],
         "status": 0,
         "isChecked": false
@@ -366,6 +392,7 @@ const graphQL = {
             }
         ],
         "title": "Làm việc với khách hàng",
+        "description": "Không thể xem được đường dẫn",
         "file": [],
         "status": 1,
         "isChecked": false
@@ -395,6 +422,7 @@ const graphQL = {
             }
         ],
         "title": "Tích hợp Node + Mongo vào dự án",
+        "description": "Không thể xem được đường dẫn",
         "file": [],
         "status": 2,
         "isChecked": false
