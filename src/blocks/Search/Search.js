@@ -22,6 +22,7 @@ class Search extends Component {
 
     this.updateNewTask = this.updateNewTask.bind(this)
     this.onPressEnter = this.onPressEnter.bind(this)
+    this.onPressEnterTextArea = this.onPressEnterTextArea.bind(this)
     this.handleClick = this.handleClick.bind(this)
     this.handleFileUpload = this.handleFileUpload.bind(this)
     this.getMB = this.getMB.bind(this)
@@ -35,6 +36,12 @@ class Search extends Component {
     if (event.keyCode === 13 && this.state.value) {
       this.handleClick()
     }
+  }
+
+  onPressEnterTextArea(event) {
+    if (event.keyCode === 13 && this.state.value) {
+      
+    }  
   }
 
   handleClick() {
@@ -96,11 +103,11 @@ class Search extends Component {
 		{
 			showTextarea
 				?   <textarea 
-					  className="search__input"
+					  className="search__input search__textarea"
 					  placeholder={placeholder ? placeholder : 'Tiêu đề công việc ?'}
 					  value={this.state.value || ''} 
-					  onChange={this.updateNewTask} 
-					  onKeyDown={this.onPressEnter} 
+					  onChange={this.updateNewTask}
+            onKeyDown={this.onPressEnterTextArea}
 					/>
 				:   <input 
 					  type='text' 

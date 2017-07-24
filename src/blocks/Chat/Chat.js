@@ -17,7 +17,7 @@ class Chat extends Component {
 
     }
 	
-	this.onCreateComment = this.onCreateComment.bind(this;
+    this.onCreateComment = this.onCreateComment.bind(this);
   }
 
   componentDidMount() {
@@ -31,27 +31,27 @@ class Chat extends Component {
   }
   
   onCreateComment(value, file, imageBase64) {
-	this.props.onSend(value, file, imageBase64);
+	 this.props.onSend(value, file, imageBase64);
   }
 
   render() {
 
     return (
-		<div className="chat">
-			<div className="chat__list">
-			  <Scrollbars 
-				ref="scrollbars"
-			  >
-			  </Scrollbars>
-			</div>
-			<div className="chat__input">
-				<Search 
-					showTextarea
-					placeholder="Trao đổi công việc" 
-					callback={this.onCreateComment} 
-				/>
-			</div>
-		</div>
+  		<div className="chat">
+  			<div className="chat__list">
+  			  <Scrollbars 
+  				ref="scrollbars"
+  			  >
+  			  </Scrollbars>
+  			</div>
+  			<div className="chat__input">
+  				<Search 
+  					showTextarea
+  					placeholder="Trao đổi công việc" 
+  					callback={this.onCreateComment} 
+  				/>
+  			</div>
+  		</div>
     );
   }
 }

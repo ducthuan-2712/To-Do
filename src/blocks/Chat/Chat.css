@@ -1,1 +1,10 @@
 @import '../../variables.css';
+
+.chat {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+.chat__list {
+	flex: 1;
+}

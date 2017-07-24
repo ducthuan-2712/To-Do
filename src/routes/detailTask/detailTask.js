@@ -98,7 +98,7 @@ class detailTask extends Component {
               <span><Icon size="xs" name="person" />Người tạo:</span>
               <div className="dtask__user-overlay">
                 <div>
-                  <Avatar userID="100000298886063" loginType="facebook" size="32" type="circle" />
+                  <Avatar userID={100000298886063} loginType="facebook" size="32" type="circle" />
                   <span>Thuan Huynh Duc</span>
                 </div>
               </div>
@@ -107,11 +107,11 @@ class detailTask extends Component {
               <span><Icon size="xs" name="people" />Người thực hiện:</span>
               <div className="dtask__user-overlay">
                 <div>
-                  <Avatar userID="100000298886063" loginType="facebook" size="32" type="circle" />
+                  <Avatar userID={100000298886063} loginType="facebook" size="32" type="circle" />
                   <span>Thuan Huynh Duc</span>
                 </div>
                 <div>
-                  <Avatar userID="100002879180263" loginType="facebook" size="32" type="circle" />
+                  <Avatar userID={100002879180263} loginType="facebook" size="32" type="circle" />
                   <span>Đỗ Trương Phi Khanh</span>
                 </div>
               </div>
