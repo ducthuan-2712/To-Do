@@ -6,7 +6,6 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Helmet } from "react-helmet"; 
 import { connect } from 'react-redux';
-import { Scrollbars } from 'react-custom-scrollbars';
 
 // Components
 import Icon from '../../components/Icon';
@@ -15,29 +14,27 @@ import StatusCode from '../../components/StatusCode';
 import Avatar from '../../components/Avatar';
 import Button from '../../components/Button';
 
+// Blocks
+import Chat from '../../blocks/Chat'
+
 import './detailTask.css';
 
 class detailTask extends Component {
   constructor(props) {
     super(props)
     this.state = {
-
+		messages: [],
+		isLoadingEarlier: false,
     }
 
     this.handleTask = this.handleTask.bind(this);
     this.handleOpenAlert = this.handleOpenAlert.bind(this);
+	this.onSend = this.onSend.bind(this);
+	this.onLoadEarlier = this.onLoadEarlier.bind(this);
   }
 
   componentDidMount() {
     let {iddetail} = this.props.match.params;
-
-    // init scroll and scroll to bottom
-    this._scrolltoBottom();
-  }
-
-  _scrolltoBottom() {
-    const { scrollbars } = this.refs;
-    scrollbars.scrollToBottom();
   }
 
   handleTask() {
@@ -46,6 +43,14 @@ class detailTask extends Component {
 
   handleOpenAlert() {
 
+  }
+  
+  onSend() {
+	  
+  }
+  
+  onLoadEarlier() {
+	  
   }
 
   render() {
@@ -59,12 +64,20 @@ class detailTask extends Component {
         </Helmet>
         
         <div className="dtask__group">
-          <Scrollbars 
-            ref="scrollbars"
-            className="dtask__chat"
-          >
-            
-          </Scrollbars>
+		  <div className="dtask__chat">
+			<Chat
+				messages={this.state.messages}
+				onSend={this.onSend}
+				loadEarlier={true} // Bật nút "load những tin nhắn cũ hơn"
+				onLoadEarlier={this.onLoadEarlier} // callback when nut load tin nhắn cũ hơn được click
+				isLoadingEarlier={this.state.isLoadingEarlier} // bool cho phép hiển thị nút load khi tin nhẵn cũ được click
+				myUser={{
+					_id: 100000298886063,
+					is_login: "facebook",
+					name: "Thuan Huynh Duc",
+				}}
+			/>
+		  </div>
           <div className="dtask__info">
             <div className="dtask__fgroup dtask__fgroup--border">
               <Checkbox callback={this.handleTask} isChecked={true} />

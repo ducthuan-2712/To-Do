@@ -15,7 +15,7 @@ class Search extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      valueTask: '',
+      value: '',
       file: {},
       imageBase64: '',
     }
@@ -28,22 +28,22 @@ class Search extends Component {
   }
 
   updateNewTask(event) {
-    this.setState({ valueTask: event.target.value })
+    this.setState({ value: event.target.value })
   }
 
   onPressEnter(event) {
-    if (event.keyCode === 13 && this.state.valueTask) {
+    if (event.keyCode === 13 && this.state.value) {
       this.handleClick()
     }
   }
 
   handleClick() {
-    const { valueTask, file, imageBase64 } = this.state
+    const { value, file, imageBase64 } = this.state
 
     if (this.props.callback) {
-      this.props.callback(JSON.stringify(valueTask), file, imageBase64)
+      this.props.callback(JSON.stringify(value), file, imageBase64)
       this.setState({
-        valueTask: '',
+        value: '',
         file: {},
         imageBase64: ''
       })
@@ -72,8 +72,8 @@ class Search extends Component {
   }
 
   render() {
-    const { valueTask, file } = this.state;
-    const { noAttached, placeholder } = this.props;
+    const { value, file } = this.state;
+    const { noAttached, placeholder, showTextarea } = this.props;
 
     return (
       <div className="search">
@@ -93,16 +93,26 @@ class Search extends Component {
             <Icon size="xs" name="attach_file" />
           </div>
         }
-        <input 
-          type='text' 
-          className="search__input"
-          placeholder={placeholder ? placeholder : 'Tiêu đề công việc ?'}
-          value={this.state.valueTask || ''} 
-          onChange={this.updateNewTask} 
-          onKeyDown={this.onPressEnter} 
-        />
+		{
+			showTextarea
+				?   <textarea 
+					  className="search__input"
+					  placeholder={placeholder ? placeholder : 'Tiêu đề công việc ?'}
+					  value={this.state.value || ''} 
+					  onChange={this.updateNewTask} 
+					  onKeyDown={this.onPressEnter} 
+					/>
+				:   <input 
+					  type='text' 
+					  className="search__input"
+					  placeholder={placeholder ? placeholder : 'Tiêu đề công việc ?'}
+					  value={this.state.value || ''} 
+					  onChange={this.updateNewTask} 
+					  onKeyDown={this.onPressEnter} 
+					/>
+		}
         {
-          valueTask
+          value
             ? <div className="search__button search__button--active" onClick={this.handleClick}><Icon size="xs" name="check" color="white" /></div>
             : <div className="search__button"><Icon size="xs" name="check" color="white" /></div>
         }
