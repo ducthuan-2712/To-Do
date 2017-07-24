@@ -14,6 +14,11 @@
 	padding: 0 10px 0 20px;
 	outline: 0;
 }
+.search__textarea {
+	height: 22px;
+    line-height: 22px;
+    resize: none;
+}
 .search__input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color:    #d5d5d5;
     font-weight: lighter;
