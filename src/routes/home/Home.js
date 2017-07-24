@@ -133,7 +133,7 @@ class Home extends Component {
     }
   }
 
-  onCreateTask(valueTast, file, imageBase64) {
+  onCreateTask(value, file, imageBase64) {
 
   }
 
